@@ -1,0 +1,32 @@
+body {
+  background-color: #fff;
+  font-family: $primaryFont;
+  color: $primaryFontColor;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 1200px;
+  }
+}
+.section {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+@media screen and (min-width: 1200px) {
+  .section {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+}

@@ -1,0 +1,10 @@
+.footer {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-top: 2px solid $extraBackgroundColor;
+
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+}
