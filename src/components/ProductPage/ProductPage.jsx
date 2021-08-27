@@ -1,15 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, {useCallback, useState} from "react";
 import { Link, withRouter } from "react-router-dom";
+import Axios from 'axios';
 import TypeSwitcher from "../TypeSwitcher";
 
-function ProductPage() {
 
-    const [selectedOption, setSelectedOption] = useState({ value: 'default' });
-    const onSelected = useCallback(
-        (event) => {
-            setSelectedOption({value: event.target.value})
-        }, [setSelectedOption]
-    );
+function ProductPage() {
     
     const [description, setDescription] = useState({});
     const onChanged = useCallback(
@@ -20,8 +15,40 @@ function ProductPage() {
             })
         }, [description, setDescription]
     );
-
     console.log(description);
+  
+    const [selectedOption, setSelectedOption] = useState({ value: 'default' });
+    const onSelected = useCallback(
+        (event) => {
+            setSelectedOption({ value: event.target.value });
+            setDescription({
+                ...description,
+                [event.target.name]: event.target.value
+            })
+        }, [setSelectedOption, description]
+    );
+
+    const onFormSubmit = () => {
+        const data = description;
+        const BASE_POST_URL = 'http://localhost:3001/api/insert';
+        Axios.post(BASE_POST_URL, {
+            sku: data.sku,
+            name: data.name,
+            price: data.price,
+            type: data.type,
+            size: data.size,
+            weight: data.weight,
+            height: data.height,
+            width: data.width,
+            length: data.length
+        }, { headers: { "Content-Type": "application/json" } })
+            .catch((err) => { console.log(err) });
+    }
+    const onFormReset = () => {
+        document.getElementById('product_form').reset();
+        setSelectedOption({ value: 'default' });
+        setDescription({});
+    }
 
     return (
         <React.Fragment>
@@ -31,11 +58,13 @@ function ProductPage() {
                 <ul className="buttons-list">
                         <li className="buttons-list-item">
                             <Link to="/">
-                                <button className="modal-button" type="submit">Save</button>
+                                <button className="modal-button" type="submit" onClick={onFormSubmit}>Save</button>
                             </Link>
                         </li>
                         <li className="buttons-list-item">
-                            <button className="modal-button" type="submit">Cancel</button>
+                            <Link to="/">
+                                <button className="modal-button" type="reset" onClick={onFormReset}>Cancel</button>
+                            </Link>
                         </li>
                 </ul>
             </div>
@@ -45,11 +74,11 @@ function ProductPage() {
                 <form className="form" id="product_form">
                     <label className="form-field">
                         SKU
-                        <input onChange={onChanged} name="sku" className="form-input" required />
+                        <input onChange={onChanged} name="sku" className="form-input" autoComplete="off" required />
                     </label>
                     <label className="form-field">
                         Name
-                        <input onChange={onChanged} name="name" className="form-input" required/>
+                        <input onChange={onChanged} name="name" className="form-input" autoComplete="off" required/>
                     </label>
                     <label className="form-field">
                         Price ($)
@@ -63,7 +92,7 @@ function ProductPage() {
                     <form className="type-choice-form" id="productType">
                         <label className="form-field">
                             Type Switcher
-                            <select value={selectedOption.value} onChange={onSelected} name="typeSelection" className="select-field" size="1" required>
+                            <select value={selectedOption.value} onChange={onSelected} name="type" className="select-field" size="1" required>
                                 <option className="option" value="default" disabled hidden>Choose a type</option>
                                 <option className="option" value="DVD">DVD</option>
                                 <option className="option" value="Furniture">Furniture</option>
@@ -71,8 +100,8 @@ function ProductPage() {
                             </select>
                         </label>
                     </form>
+                <TypeSwitcher property={selectedOption} callback={onChanged} />
                 </div>
-                <TypeSwitcher property={selectedOption} callback={onChanged}/>
         </section>
         </React.Fragment>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+
 import ProductsList from './components/ProductsList';
 import ProductPage from './components/ProductPage';
 import Footer from './components/Footer';
@@ -9,6 +10,7 @@ import './sass/main.scss';
 
 
 function App() {
+  
   return (
     <div className="App">
       <Router>
