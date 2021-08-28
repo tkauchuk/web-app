@@ -37,11 +37,11 @@ function ProductsList() {
                     <ul className="buttons-list">
                         <li className="buttons-list-item">
                             <Link to="/add-product">
-                                <button className="modal-button" type="button">Add</button>
+                                <button className="modal-button" type="button">ADD</button>
                             </Link>
                         </li>
                         <li className="buttons-list-item">
-                            <button onClick={() => { deleteProducts(checkedProducts) }} className="modal-button" type="submit">Mass Delete</button>
+                            <button id="delete-product-button" onClick={() => { deleteProducts(checkedProducts) }} className="modal-button" type="submit">MASS DELETE</button>
                         </li>
                     </ul>
                 </div>

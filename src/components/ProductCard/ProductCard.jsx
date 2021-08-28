@@ -5,7 +5,15 @@ function ProductCard({ sku, name, price, index, isChecked, product}) {
             <label for={index} className="product-id">{sku}</label>
             <h2>{name}</h2>
             <p>{price} $</p>
-            <p>Size: 700 MB</p>
+            {product.type === 'Book' &&
+                <p>Weight: {product.weight} KG</p>
+            }
+            {product.type === 'DVD' &&
+                <p>Size: {product.size} MB</p>
+            }
+            {product.type === 'Furniture' &&
+                <p>Dimension: {product.height}X{product.width}X{product.length}</p>
+            }
         </li>
     );
 }

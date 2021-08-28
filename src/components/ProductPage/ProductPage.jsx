@@ -74,15 +74,15 @@ function ProductPage() {
                 <form className="form" id="product_form">
                     <label className="form-field">
                         SKU
-                        <input onChange={onChanged} name="sku" className="form-input" autoComplete="off" required />
+                        <input onChange={onChanged} id="sku" name="sku" className="form-input" autoComplete="off" required />
                     </label>
                     <label className="form-field">
                         Name
-                        <input onChange={onChanged} name="name" className="form-input" autoComplete="off" required/>
+                        <input onChange={onChanged} id="name" name="name" className="form-input" autoComplete="off" required/>
                     </label>
                     <label className="form-field">
                         Price ($)
-                        <input onChange={onChanged} type="number" name="price" className="form-input" required/>
+                        <input onChange={onChanged} id="price" type="number" name="price" className="form-input" required/>
                     </label>
                 </form>
             </div>
@@ -92,7 +92,7 @@ function ProductPage() {
                     <form className="type-choice-form" id="productType">
                         <label className="form-field">
                             Type Switcher
-                            <select value={selectedOption.value} onChange={onSelected} name="type" className="select-field" size="1" required>
+                            <select value={selectedOption.value} onChange={onSelected} id="productType" name="type" className="select-field" size="1" required>
                                 <option className="option" value="default" disabled hidden>Choose a type</option>
                                 <option className="option" value="DVD">DVD</option>
                                 <option className="option" value="Furniture">Furniture</option>
