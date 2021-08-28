@@ -3,16 +3,21 @@ const app = express();
 const cors = require('cors');
 const mysql = require('mysql');
 
+const port = process.env.PORT || 3001;
+
+app.set('view engine', 'ejs')
+
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '9688',
-    database: 'products_database'
+    host: 'eu-cdbr-west-01.cleardb.com',
+    user: 'b21e7af739c33a',
+    password: 'd35b9750',
+    database: 'heroku_0b091c9efd9d054'
 })
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+
 
 app.post('/api/insert', (req, res) => {
     
@@ -48,6 +53,7 @@ app.delete('/api/delete/products/:id', (req, res) => {
             console.log(error);
         }
     })
-});
-app.listen(3001, () => console.log('It works!'));
+})
+
+app.listen(port, () => console.log('It works!'));
 
