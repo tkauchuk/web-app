@@ -94,9 +94,9 @@ function ProductPage() {
                             Type Switcher
                             <select value={selectedOption.value} onChange={onSelected} id="productType" name="type" className="select-field" size="1" required>
                                 <option className="option" value="default" disabled hidden>Choose a type</option>
-                                <option className="option" value="DVD">DVD</option>
-                                <option className="option" value="Furniture">Furniture</option>
-                                <option className="option" value="Book">Book</option>
+                                <option className="option" id="DVD" value="DVD">DVD</option>
+                                <option className="option" id="Furniture" value="Furniture">Furniture</option>
+                                <option className="option" id="Book" value="Book">Book</option>
                             </select>
                         </label>
                     </form>
