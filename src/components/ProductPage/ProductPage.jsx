@@ -89,7 +89,7 @@ function ProductPage() {
         </section>
         <section className="type-choice-section section">
                 <div className="container">
-                    <form className="type-choice-form" id="productType">
+                    <form className="type-choice-form">
                         <label className="form-field">
                             Type Switcher
                             <select value={selectedOption.value} onChange={onSelected} id="productType" name="type" className="select-field" size="1" required>
