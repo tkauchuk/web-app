@@ -30,7 +30,7 @@ function TypeSwitcher({property, callback}) {
             {type === 'Book' &&
                 <label className="form-field">
                     Weight (KG)
-                    <input name="weight" className="form-input" onChange={callback} autoComplete="off"/>
+                    <input name="weight" id="weight" className="form-input" onChange={callback} autoComplete="off"/>
                 </label>
             }
             {type === 'default' &&
